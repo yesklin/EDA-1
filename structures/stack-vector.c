@@ -19,7 +19,7 @@ stack *create_stack(int size){
 }
 
 
-int unstack_it(stack *stk, int *num){
+int pop(stack *stk, int *num){
   
   if(stk->top == -1) return 0;
 
@@ -30,7 +30,7 @@ int unstack_it(stack *stk, int *num){
 
 }
 
-int stack_it(stack *stk, int num){
+int push(stack *stk, int num){
   if(stk->top == stk->size-1){
     stk->v = realloc(stk->v, stk->size*2*sizeof(int));
     stk -> size *= 2;
@@ -49,18 +49,18 @@ void print_stack(stack *stk){
 int main(){ 
   stack *pilha = create_stack(3);
   
-  stack_it(pilha, 10);
-  stack_it(pilha, 20);
-  stack_it(pilha, 30);
+  push(pilha, 10);
+  push(pilha, 20);
+  push(pilha, 30);
 
   print_stack(pilha);
 
   int num;
-  unstack_it(pilha, &num);
+  pop(pilha, &num);
   printf("Unstacked: %d\n", num);
   print_stack(pilha);
-  stack_it(pilha, 30);
-  stack_it(pilha, 40);
+  push(pilha, 30);
+  push(pilha, 40);
   printf("Stacked 30 and 40\n");
   print_stack(pilha);
 }

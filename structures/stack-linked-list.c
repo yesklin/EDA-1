@@ -15,7 +15,7 @@ node *create_stack(){
   return new_stack;
 }
 
-int stack(node *stk, int number){
+int push(node *stk, int number){
   node *new_node = malloc(sizeof(node));
   new_node -> data = number;
   new_node -> next = stk->next;
@@ -24,7 +24,7 @@ int stack(node *stk, int number){
   return 1;
 }
 
-int unstack(node *stk, int *number){
+int pop(node *stk, int *number){
   if(stk -> next != NULL){
     *number = stk -> next -> data;
     node *garbage = stk->next;
@@ -47,18 +47,18 @@ void print_stack(node *stk){
 int main(){
   node *pilha = create_stack();
   
-  stack(pilha, 10);
-  stack(pilha, 20);
-  stack(pilha, 30);
+  push(pilha, 10);
+  push(pilha, 20);
+  push(pilha, 30);
 
   print_stack(pilha);
   int num;
-  unstack(pilha, &num);
+  pop(pilha, &num);
   printf("Unstacked %d\n", num);
 
-  stack(pilha, 30);
-  stack(pilha, 40);
-  stack(pilha, 50);
+  push(pilha, 30);
+  push(pilha, 40);
+  push(pilha, 50);
 
   print_stack(pilha);
 }
